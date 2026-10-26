@@ -15,7 +15,7 @@ I write the mobile app, the API behind it, and the data layer underneath.
 
 **The website** started as a landing page. It's turning into a third client against the same database, so everything the apps do works in a browser too.
 
-Two of us build this. Ivan is founder and CEO, I'm co-founder and CTO. Mobile and web devops are mine: builds, releases, store submissions, every Expo SDK upgrade, and the pipelines behind all three surfaces. Nothing ships without a review from me.
+Two of us build this. Ivan is founder and CEO, I'm co-founder and CTO. Mobile and web devops are mine: builds, releases, store submissions, every Expo SDK upgrade, and the pipelines behind all three surfaces.
 
 <a href="https://apps.apple.com/us/app/vamo-discover-street-food/id6737868193"><img src="https://img.shields.io/badge/App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white" /></a>
 <a href="https://play.google.com/store/apps/details?id=com.vamo.app"><img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" /></a>
@@ -25,7 +25,7 @@ Two of us build this. Ivan is founder and CEO, I'm co-founder and CTO. Mobile an
 
 Digital banking for credit unions, where no two credit unions want the same app. One codebase ships as a separately themed, separately configured product for each one, down to which vendor integrations it talks to and which features exist at all. Shipping a feature means shipping every version of it that somebody might switch on.
 
-I work across all of it: SQL and C#/.NET APIs, the Vue admin, and the React Native app members use. I'm also the backup for our mobile devops.
+I work across all of it: SQL and C#/.NET APIs, the admin tools, and the React Native app members use. I'm also the backup for our mobile devops.
 
 ---
 
