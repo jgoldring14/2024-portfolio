@@ -19,6 +19,7 @@ interface FormValues {
 }
 
 export function ContactForm() {
+  const captchaHintId = useId()
   const [captcha, setCaptcha] = useState<string | null>()
 
   const [formValues, setFormValues] = useState<FormValues>({
@@ -87,13 +88,18 @@ export function ContactForm() {
               className="mb-4"
               onChange={setCaptcha}
             />
-            {captcha && (
-              <Button
-                type="submit"
-                className="sm:w-50 flex h-14 w-72 items-center justify-center rounded-xl"
-              >
-                Send
-              </Button>
+            <Button
+              type="submit"
+              disabled={!captcha}
+              aria-describedby={captcha ? undefined : captchaHintId}
+              className="flex h-14 w-72 items-center justify-center rounded-xl disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Send
+            </Button>
+            {!captcha && (
+              <p id={captchaHintId} className="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+                Check the box above to send.
+              </p>
             )}
           </div>
         </form>
@@ -146,7 +152,7 @@ function TextInput({
       />
       <label
         htmlFor={id}
-        className="pointer-events-none absolute left-6 top-1/2 -mt-3 origin-left text-base/6 text-neutral-500 transition-all duration-200 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:font-semibold peer-focus:text-neutral-950 peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-neutral-950"
+        className="pointer-events-none absolute left-6 top-1/2 -mt-3 origin-left text-base/6 text-neutral-500 transition-all duration-200 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:font-semibold peer-focus:text-neutral-950 peer-[:not(:placeholder-shown)]:-translate-y-4 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-neutral-950 dark:peer-focus:text-white dark:peer-[:not(:placeholder-shown)]:text-white"
       >
         {label}
       </label>

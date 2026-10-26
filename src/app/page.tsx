@@ -5,17 +5,19 @@ import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { List, ListItem } from '@/components/List'
+import { ProfileActions } from '@/components/ProfileActions'
 import { SectionIntro } from '@/components/SectionIntro'
 import { StylizedImage } from '@/components/StylizedImage'
 import imageLaptopDesk from '../../public/images/laptop-desk.jpg'
 import imageVamoCover from '../../public/images/vamo-cover.png'
 import imageVamoLogo from '../../public/images/vamo-logo.png'
 
+type ProductLink = { label: string; href: string }
+
 type Product = {
   name: string
   description: string
-  href: string
-  linkLabel: string
+  links: Array<ProductLink>
 }
 
 const products: Array<Product> = [
@@ -23,22 +25,22 @@ const products: Array<Product> = [
     name: 'Vamo',
     description:
       'Open it to see the taco cart, the pop-up, the market happening four blocks away. Vendors run their whole operation from the same download, going live on the map, posting menus, taking pickup and catering requests. Live on iOS and Android.',
-    href: 'https://apps.apple.com/us/app/vamo-discover-street-food/id6737868193',
-    linkLabel: 'App Store',
+    links: [
+      { label: 'App Store', href: 'https://apps.apple.com/us/app/vamo-discover-street-food/id6737868193' },
+      { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.vamo.app' },
+    ],
   },
   {
     name: 'Vamo Host',
     description:
-      'The other side of the marketplace, built for the people who run the markets. Vendor applications, slots, payments and events. Ships fall 2026.',
-    href: 'https://hellovamo.app',
-    linkLabel: 'hellovamo.app',
+      'The other side of the marketplace, built for the people who run the markets. Vendor applications, slots, payments and events. First live market November 2026.',
+    links: [{ label: 'hellovamo.app', href: 'https://hellovamo.app' }],
   },
   {
     name: 'Vamo Website',
     description:
       'Started as a landing page. It is turning into a third client against the same database, so everything the apps do works in a browser too.',
-    href: 'https://hellovamo.app',
-    linkLabel: 'hellovamo.app',
+    links: [{ label: 'hellovamo.app', href: 'https://hellovamo.app' }],
   },
 ]
 
@@ -63,6 +65,7 @@ function Hero() {
           for diners and vendors, another for market organizers, and a website
           that does both.
         </p>
+        <ProfileActions className="mt-10" />
       </FadeIn>
     </Container>
   )
@@ -98,7 +101,7 @@ function VamoSection() {
         <FadeInStagger className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
           {products.map((product) => (
             <FadeIn key={product.name} className="flex">
-              <article className="flex w-full flex-col rounded-3xl p-8 ring-1 ring-neutral-950/5 transition duration-300 ease-apple-out hover:bg-neutral-50 dark:ring-white/10 dark:hover:bg-neutral-900">
+              <article className="flex w-full flex-col rounded-3xl p-8 ring-1 ring-neutral-950/5 dark:ring-white/10">
                 <Image
                   src={imageVamoLogo}
                   alt=""
@@ -111,14 +114,19 @@ function VamoSection() {
                 <p className="mt-4 flex-auto text-base text-neutral-600 dark:text-neutral-400">
                   {product.description}
                 </p>
-                <Link
-                  href={product.href}
-                  target="_blank"
-            rel="noopener noreferrer"
-                  className="mt-6 text-sm font-semibold text-vamo-600 transition hover:text-vamo-700 dark:text-vamo-400 dark:hover:text-vamo-100"
-                >
-                  {product.linkLabel}
-                </Link>
+                <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+                  {product.links.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-semibold text-vamo-600 transition hover:text-vamo-700 dark:text-vamo-400 dark:hover:text-vamo-100"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
               </article>
             </FadeIn>
           ))}
@@ -160,7 +168,7 @@ function StackSection() {
         <FadeInStagger className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {stack.map((group) => (
             <FadeIn key={group.id} className="flex">
-              <article className="flex w-full flex-col rounded-3xl p-8 ring-1 ring-neutral-950/5 transition duration-300 ease-apple-out hover:bg-neutral-50 dark:ring-white/10 dark:hover:bg-neutral-900">
+              <article className="flex w-full flex-col rounded-3xl p-8 ring-1 ring-neutral-950/5 dark:ring-white/10">
                 <h3 className="font-display text-2xl font-semibold text-neutral-950 dark:text-white">
                   {group.title}
                 </h3>
@@ -196,19 +204,21 @@ function Timeline() {
             </FadeIn>
           </div>
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
-            <ListItem title="Vamo, now">
+            <ListItem title="Vamo, 2024 to now">
               Co-founder and CTO. We shipped the street food app to iOS and
-              Android, and Vamo Host and the web client are being built on the
-              same backend. I own mobile and web devops across all three.
+              Android and keep shipping, and Vamo Host joins it with its first
+              live market in November 2026. I own mobile and web devops across
+              all three.
             </ListItem>
-            <ListItem title="Mahalo Banking, 2021 to now">
+            <ListItem title="Mahalo Banking, 2022 to now">
               Full stack on a white-label digital banking platform for credit
               unions. I have rebuilt large pieces of both the mobile app and the
               web platform, and I am backup on production mobile devops.
             </ListItem>
             <ListItem title="Flatiron School, 2021">
-              Full stack software engineering program, learning JavaScript,
-              React, Ruby and Rails.
+              Full-time immersive software engineering program, about 16 hours
+              a day, five or six days a week, learning JavaScript, React, Ruby
+              and Rails.
             </ListItem>
             <ListItem title="Started programming, 2020">
               Taught myself to code with a Udemy JavaScript course after work

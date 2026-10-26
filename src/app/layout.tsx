@@ -61,8 +61,8 @@ const personSchema = {
     'Mobile DevOps',
   ],
   sameAs: [
-    'https://github.com/JacobHarv00',
-    'https://www.linkedin.com/in/jacobharvey19',
+    'https://github.com/jgoldring14',
+    'https://www.linkedin.com/in/jacobgoldring14',
     'https://medium.com/@jacobharv00',
   ],
 }

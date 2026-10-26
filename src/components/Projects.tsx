@@ -24,7 +24,7 @@ const projects: Array<Project> = [
   {
     name: 'Vamo Host',
     description:
-      'The organizer side of the marketplace, for the people who run the markets. Vendor applications, slots, payments and event management, on the same backend as the main app. Ships fall 2026.',
+      'The organizer side of the marketplace, for the people who run the markets. Vendor applications, slots, payments and event management, on the same backend as the main app. First live market November 2026.',
     tech: 'React Native, Expo, TypeScript, Supabase, Stripe',
     links: [{ label: 'hellovamo.app', href: 'https://hellovamo.app' }],
   },

@@ -27,5 +27,5 @@ Data: SQL Server, PostgreSQL, Supabase, MySQL
 
 - Site: https://jacobharv.dev
 - Vamo: https://hellovamo.app
-- GitHub: https://github.com/JacobHarv00
-- LinkedIn: https://www.linkedin.com/in/jacobharvey19
+- GitHub: https://github.com/jgoldring14
+- LinkedIn: https://www.linkedin.com/in/jacobgoldring14

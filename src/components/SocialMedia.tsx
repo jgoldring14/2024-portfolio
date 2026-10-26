@@ -2,6 +2,8 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import Image from 'next/image'
 
+import { RESUME_URL } from '@/lib/site'
+
 import gitHubIcon from '../../public/images/github.svg'
 import linkedInIcon from '../../public/images/linkedin.svg'
 import mediumIcon from '../../public/images/medium.svg'
@@ -42,14 +44,14 @@ function ResumeIcon() {
 
 export const socialMediaProfiles = [
   {
-    title: 'Github',
-    href: 'https://github.com/JacobHarv00',
+    title: 'GitHub',
+    href: 'https://github.com/jgoldring14',
     target: '_blank',
     icon: GithubIcon,
   },
   {
     title: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/jacobharvey19',
+    href: 'https://www.linkedin.com/in/jacobgoldring14',
     target: '_blank',
     icon: LinkedInIcon,
   },
@@ -61,7 +63,7 @@ export const socialMediaProfiles = [
   },
   {
     title: 'Resume',
-    href: 'https://violet-drusilla-22.tiiny.site',
+    href: RESUME_URL,
     target: '_blank',
     icon: ResumeIcon,
   },

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
+import { ProfileActions } from '@/components/ProfileActions'
 import imageJacobGoldring from '../../../public/images/jacob-goldring.jpg'
 
 function Portrait() {
@@ -44,10 +45,15 @@ export default function About() {
       <PageIntro eyebrow="About" title="Who I am.">
         <div className="mt-10 max-w-2xl space-y-6 text-base">
           <p>
-            I taught myself to code in 2020 with a course I took after work.
-            Five years later I write software a bank depends on, and I
+            I taught myself to code in 2020 with a course I took after work,
+            then went all in. In 2021 I did Flatiron School&apos;s full-time
+            immersive program, about 16 hours a day, five or six days a week,
+            learning JavaScript, React, Ruby and Rails.
+          </p>
+          <p>
+            Since 2022 I have written software a bank depends on, and I
             co-founded a company that ships to the App Store. The work is the
-            same either way, take something complicated and make it feel simple
+            same either way: take something complicated and make it feel simple
             to use.
           </p>
           <p>
@@ -56,6 +62,7 @@ export default function About() {
             lives on the work page.
           </p>
         </div>
+        <ProfileActions className="mt-10" />
       </PageIntro>
 
       <Portrait />

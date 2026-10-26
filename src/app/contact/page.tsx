@@ -2,10 +2,12 @@ import { type Metadata } from 'next'
 import Link from 'next/link'
 
 import { Border } from '@/components/Border'
+import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
 import { SocialMedia } from '@/components/SocialMedia'
+import { RESUME_URL } from '@/lib/site'
 import { ContactForm } from './contact-form'
 
 function ContactDetails() {
@@ -15,17 +17,16 @@ function ContactDetails() {
         Resume
       </h2>
       <p className="mt-6 text-base text-neutral-600 dark:text-neutral-400">
-        Check out my resume to learn more about my expertise and experience.
+        One page covering my work at Mahalo Banking and Vamo.
       </p>
-      <br />
-      <Link
-        href="https://violet-drusilla-22.tiiny.site"
+      <Button
+        href={RESUME_URL}
         target="_blank"
-            rel="noopener noreferrer"
-        className="font-semibold text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white"
+        rel="noopener noreferrer"
+        className="mt-6"
       >
-        Resume
-      </Link>
+        View resume (PDF)
+      </Button>
       <Border className="mt-8 pt-16">
         <h2 className="font-display text-base font-semibold text-neutral-950 dark:text-white">
           Get In Touch
@@ -34,13 +35,15 @@ function ContactDetails() {
           {[
             {
               label: 'LinkedIn',
-              display: 'jacobharvey19',
-              href: 'https://www.linkedin.com/in/jacobharvey19',
+              display: 'jacobgoldring14',
+              href: 'https://www.linkedin.com/in/jacobgoldring14',
+              external: true,
             },
             {
               label: 'Email',
-              display: 'jacobharv00@gmail.com',
-              href: 'mailto:jacobharv00@gmail.com?subject=Hello%20Jacob',
+              display: 'jacobgoldring14@gmail.com',
+              href: 'mailto:jacobgoldring14@gmail.com?subject=Hello%20Jacob',
+              external: false,
             },
           ].map((item) => (
             <div key={item.label}>
@@ -50,8 +53,8 @@ function ContactDetails() {
               <dd className="mt-1 break-words">
                 <Link
                   href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
                   className="text-neutral-600 transition hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white"
                 >
                   {item.display}
