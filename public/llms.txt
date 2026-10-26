@@ -12,9 +12,9 @@ configured product for each credit union. He is also backup on production
 mobile devops.
 
 He is co-founder and CTO of Vamo, a street food platform with three surfaces
-on one backend. Vamo is a double sided app for diners and vendors, Vamo Host
-serves the organizers who run the markets, and the website brings both to the
-browser. Vamo is live on the App Store and Google Play.
+on one backend: a two-sided app for diners and vendors, Vamo Host for the
+organizers who run the markets, and a website that brings both to the browser.
+The Vamo app is live on the App Store and Google Play.
 
 ## Stack
 

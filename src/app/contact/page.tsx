@@ -29,7 +29,7 @@ function ContactDetails() {
       </Button>
       <Border className="mt-8 pt-16">
         <h2 className="font-display text-base font-semibold text-neutral-950 dark:text-white">
-          Get In Touch
+          Get in touch
         </h2>
         <dl className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2">
           {[
@@ -67,7 +67,7 @@ function ContactDetails() {
 
       <Border className="mt-16 pt-16">
         <h2 className="font-display text-base font-semibold text-neutral-950 dark:text-white">
-          Connect With Me
+          Connect with me
         </h2>
         <SocialMedia className="mt-6" />
       </Border>
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
 export default function Contact() {
   return (
     <>
-      <PageIntro eyebrow="Contact" title="Let’s work together.">
+      <PageIntro eyebrow="Contact" title="Let's work together.">
         <p>
           Send me a note about a role, a project or anything Vamo related. I
           read everything that comes through.

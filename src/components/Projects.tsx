@@ -31,7 +31,7 @@ const projects: Array<Project> = [
   {
     name: 'Vamo Website',
     description:
-      'Started as a landing page and is becoming a third client against the same database, so diners, vendors and organizers can do in a browser what they do in the apps.',
+      "Started as a landing page. Now it's growing into a full version of Vamo in the browser, so diners, vendors and organizers can do on the web what they do in the apps.",
     tech: 'Next.js, TypeScript, Tailwind, Supabase',
     links: [{ label: 'hellovamo.app', href: 'https://hellovamo.app' }],
   },

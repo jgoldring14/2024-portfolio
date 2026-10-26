@@ -49,7 +49,7 @@ export function ContactForm() {
           method="POST"
         >
           <h2 className="font-display text-base font-semibold text-neutral-950 dark:text-white">
-            Email Me
+            Email me
           </h2>
           <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50 dark:bg-white/5">
             <TextInput

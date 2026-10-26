@@ -39,7 +39,7 @@ const products: Array<Product> = [
   {
     name: 'Vamo Website',
     description:
-      'Started as a landing page. It is turning into a third client against the same database, so everything the apps do works in a browser too.',
+      "Started as a landing page. Now it's growing into a full version of Vamo in the browser, so diners, vendors and organizers can do on the web what they do in the apps.",
     links: [{ label: 'hellovamo.app', href: 'https://hellovamo.app' }],
   },
 ]
@@ -59,11 +59,11 @@ function Hero() {
           Full stack engineer. Co-founder and CTO.
         </h1>
         <p className="mt-8 max-w-2xl text-xl text-neutral-600 dark:text-neutral-400">
-          I write the mobile app, the API behind it, and the data layer
-          underneath. By day that is a white-label digital banking platform.
-          After hours it is Vamo, a street food platform I co-founded. One app
-          for diners and vendors, another for market organizers, and a website
-          that does both.
+          I build apps people use every day, from the data layer to the screen
+          they tap. By day that&apos;s a white-label banking platform for credit
+          unions. After hours it&apos;s Vamo, the street food marketplace I
+          co-founded: one app for diners and vendors, one for market
+          organizers, and a website that does both.
         </p>
         <ProfileActions className="mt-10" />
       </FadeIn>
@@ -80,8 +80,8 @@ function VamoSection() {
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          My co-founder and I build three products against one backend, and I
-          own the mobile and web side of all of them.
+          My co-founder and I build all three on one shared backend. I lead
+          engineering and run every release.
         </p>
       </SectionIntro>
 
@@ -205,15 +205,15 @@ function Timeline() {
           </div>
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
             <ListItem title="Vamo, 2024 to now">
-              Co-founder and CTO. We shipped the street food app to iOS and
-              Android and keep shipping, and Vamo Host joins it with its first
-              live market in November 2026. I own mobile and web devops across
-              all three.
+              Co-founder and CTO. We took Vamo from an idea to a live iOS and
+              Android app, and Vamo Host follows for market organizers. I lead
+              engineering and run every release.
             </ListItem>
             <ListItem title="Mahalo Banking, 2022 to now">
-              Full stack on a white-label digital banking platform for credit
-              unions. I have rebuilt large pieces of both the mobile app and the
-              web platform, and I am backup on production mobile devops.
+              Started on the frontend and grew into full stack, now Development
+              Engineer 2. I&apos;ve built major features across the mobile app,
+              the web platform and the APIs behind them for 1M+ credit union
+              members, and I back up our mobile releases.
             </ListItem>
             <ListItem title="Flatiron School, 2021">
               Full-time immersive software engineering program, about 16 hours
@@ -221,9 +221,8 @@ function Timeline() {
               and Rails.
             </ListItem>
             <ListItem title="Started programming, 2020">
-              Taught myself to code with a Udemy JavaScript course after work
-              every day. Built a todo app and a hangman game, then put them both
-              online for anyone to use.
+              Started with a JavaScript course after work, every day, and got
+              hooked.
             </ListItem>
           </List>
         </div>

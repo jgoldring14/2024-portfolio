@@ -14,7 +14,7 @@ export default function NotFound() {
           Page not found
         </h1>
         <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
-          Sorry, we could not find the page you are looking for.
+          That page doesn&apos;t exist. It may have moved when the site was rebuilt.
         </p>
         <Link
           href="/"
