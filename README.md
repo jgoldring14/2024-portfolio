@@ -1,97 +1,57 @@
-# Jacob Goldring, portfolio
+# Jacob Goldring
 
-Personal portfolio site for Jacob Goldring, full stack engineer and co-founder
-and CTO at Vamo.
+Full stack engineer. Co-founder and CTO at Vamo.
+Breckenridge, Colorado. Remote for both.
 
-Live at [jacobharv.dev](https://jacobharv.dev).
+I write the mobile app, the API behind it, and the data layer underneath.
 
-## Stack
+---
 
-- [Next.js 14](https://nextjs.org) with the App Router, built as a fully static
-  export (`output: 'export'`)
-- TypeScript
-- [Tailwind CSS](https://tailwindcss.com) with dark mode driven by the system
-  setting (`darkMode: 'media'`)
-- [Framer Motion](https://www.framer.com/motion/) for scroll reveals, which
-  respect `prefers-reduced-motion`
-- MDX is wired up through `@next/mdx` but no MDX content exists yet
-- Mona Sans, a variable font served from `src/fonts`
+### Vamo
 
-The contact form posts to [getform.io](https://getform.io) and is protected by
-Google reCAPTCHA v2. There is no backend, no API routes and no server actions.
+**Vamo** is street food, found. Open it to see the taco cart, the pop-up, the market happening four blocks from you. Vendors run their whole operation from the same download: go live on the map, post menus, take pickup and catering requests. Two audiences, one app. Live on iOS and Android.
 
-## Local development
+**Vamo Host** is for the people who run the markets. Applications, slots, payments, events. Our first live market runs November 14 and 15, 2026, with 15 vendors taking real payments.
 
-```bash
-npm ci
-npm run dev
-```
+**The website** started as a landing page. It's turning into a third client against the same database, so everything the apps do works in a browser too.
 
-The site runs at http://localhost:3000.
+Two of us build this. Ivan is founder and CEO, I'm co-founder and CTO. Mobile and web devops are mine: builds, releases, store submissions, every Expo SDK upgrade, and the pipelines behind all three surfaces. Nothing ships without a review from me.
 
-Other commands:
+<a href="https://apps.apple.com/us/app/vamo-discover-street-food/id6737868193"><img src="https://img.shields.io/badge/App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white" /></a>
+<a href="https://play.google.com/store/apps/details?id=com.vamo.app"><img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" /></a>
+<a href="https://hellovamo.app"><img src="https://img.shields.io/badge/hellovamo.app-FF6B35?style=for-the-badge&logoColor=white" /></a>
 
-```bash
-npm run build   # static export into out/
-npm run lint    # eslint
-```
+### Mahalo Banking
 
-## Environment
+Digital banking for credit unions, where no two credit unions want the same app. One codebase ships as a separately themed, separately configured product for each one, down to which vendor integrations it talks to and which features exist at all. Shipping a feature means shipping every version of it that somebody might switch on.
 
-`NEXT_PUBLIC_RECAPTCHA_SITE_KEY` is required at build time. It lives in `.env`
-and is committed on purpose. A reCAPTCHA site key is public by design and is
-readable in the page source of any site that uses one. The secret key is not in
-this repo.
+I work across all of it: SQL and C#/.NET APIs, the Vue admin, and the React Native app members use. I'm also the backup for our mobile devops.
 
-Build without it and the contact form renders a broken captcha, which hides the
-send button and makes the form unusable.
+---
 
-## Deploying
+### Stack
 
-This repo is not connected to Netlify. Pushing to `main` publishes nothing.
-Deploys are manual:
+**Mobile**<br>
+<img src="https://skillicons.dev/icons?i=react,ts,redux" height="40" />
 
-1. Run `npm run build`, which writes the site into `out/`
-2. Open the site in the Netlify dashboard
-3. Go to Deploys
-4. Drag the whole `out/` folder onto the drop zone
+**Web**<br>
+<img src="https://skillicons.dev/icons?i=nextjs,vue,tailwind,figma" height="40" />
 
-Netlify serves the new build once the upload finishes.
+**API**<br>
+<img src="https://skillicons.dev/icons?i=cs,dotnet,azure,docker" height="40" />
 
-## Structure
+**Data**<br>
+<img src="https://skillicons.dev/icons?i=postgres,supabase,mysql,git" height="40" />
 
-```
-src/app          routes, one folder per page, plus sitemap.ts and robots.ts
-src/components   shared UI
-src/lib          site constants and helpers
-src/styles       tailwind layers and typography
-public/images    images, served as is because image optimization is disabled
-public/llms.txt  plain text summary for AI crawlers
-```
+Also Expo, SQL Server, Entity Framework, Dapper, React Native Web, EAS and Bitrise.
 
-## Security
+---
 
-The site is a static export. There is no database, no API route and no server
-action, so there is no server-side injection surface. The contact form posts
-straight to getform.io.
+### Elsewhere
 
-- `public/_headers` sets CSP, HSTS, `X-Frame-Options`, `X-Content-Type-Options`,
-  `Referrer-Policy` and `Permissions-Policy`. Netlify reads this file and serves
-  the headers on every response
-- The CSP `form-action` allows only this origin and getform.io, so an injected
-  form cannot post anywhere else
-- The one `dangerouslySetInnerHTML` is the JSON-LD block, and its payload is
-  escaped by `serializeJsonLd` in `src/app/layout.tsx`
-- Every `target="_blank"` link carries `rel="noopener noreferrer"`
+<a href="https://jacobharv.dev/"><img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=react&logoColor=white" /></a>
+<a href="https://www.linkedin.com/in/jacobgoldring14/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://violet-drusilla-22.tiiny.site/"><img src="https://img.shields.io/badge/Resume-4A4A4A?style=for-the-badge&logo=readdotcv&logoColor=white" /></a>
+<a href="mailto:jacobgoldring14@gmail.com?subject=Hello%20Jacob"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
 
-Changing the CSP means re-testing reCAPTCHA, which needs `https://www.google.com`
-and `https://www.gstatic.com` in `script-src` and `https://www.google.com` in
-`frame-src`.
-
-## SEO
-
-- `sitemap.ts` and `robots.ts` generate `sitemap.xml` and `robots.txt` at build
-- `metadataBase` in `src/app/layout.tsx` makes Open Graph URLs absolute
-- Every page sets its own title, description and canonical URL
-- A JSON-LD `Person` schema is rendered in the root layout
-- `public/llms.txt` gives AI crawlers a plain text summary
+Off the clock: dystopian novels, movie nights with my wife and our cats, and whatever game currently has my attention.
