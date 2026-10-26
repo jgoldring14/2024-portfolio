@@ -5,4 +5,4 @@ export const SITE_URL = 'https://jacobharv.dev'
 export const SITE_NAME = 'Jacob Goldring'
 
 /** Hosted resume PDF, linked from the hero, about, contact and social links. */
-export const RESUME_URL = 'https://violet-drusilla-22.tiiny.site'
+export const RESUME_URL = 'https://amethyst-gloria-21.tiiny.site'

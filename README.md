@@ -51,7 +51,7 @@ Also Expo, SQL Server, Entity Framework, Dapper, React Native Web, EAS and Bitri
 
 <a href="https://jacobharv.dev/"><img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=react&logoColor=white" /></a>
 <a href="https://www.linkedin.com/in/jacobgoldring14/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-<a href="https://violet-drusilla-22.tiiny.site/"><img src="https://img.shields.io/badge/Resume-4A4A4A?style=for-the-badge&logo=readdotcv&logoColor=white" /></a>
+<a href="https://amethyst-gloria-21.tiiny.site/"><img src="https://img.shields.io/badge/Resume-4A4A4A?style=for-the-badge&logo=readdotcv&logoColor=white" /></a>
 <a href="mailto:jacobgoldring14@gmail.com?subject=Hello%20Jacob"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
 
 Off the clock: dystopian novels, movie nights with my wife and our cats, and whatever game currently has my attention.
