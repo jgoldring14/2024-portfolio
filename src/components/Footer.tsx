@@ -55,7 +55,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
-              Let&apos;s work together.
+              Say hello
             </h2>
             <Button href="/contact" size="lg" className="mt-8">
               Get in touch

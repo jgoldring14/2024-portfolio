@@ -51,7 +51,7 @@ export function ListItem({
 }) {
   return (
     <li className="relative mt-10 pl-12 first:mt-0">
-      <FadeIn>
+      <FadeIn blur>
         <span
           aria-hidden="true"
           className="absolute left-0 top-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-surface bg-convex shadow-neu-sm"

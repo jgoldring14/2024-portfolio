@@ -86,7 +86,7 @@ function Header() {
   return (
     <header className="relative z-40 pt-6 sm:pt-8">
       <Container>
-        <div className="flex items-center justify-between gap-4 rounded-[2rem] bg-surface py-2.5 pl-6 pr-2.5 shadow-neu">
+        <div className="flex items-center justify-between gap-2 rounded-[2rem] bg-surface py-2.5 pl-6 pr-2.5 shadow-neu">
           <Link
             href="/"
             className="whitespace-nowrap font-display text-lg font-semibold tracking-tight text-ink sm:text-xl"
@@ -102,7 +102,7 @@ function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 min-[360px]:gap-3">
             <Button href="/contact" className="hidden md:inline-flex">
               Contact
             </Button>

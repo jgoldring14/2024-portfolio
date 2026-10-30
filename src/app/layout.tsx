@@ -6,7 +6,7 @@ import { SITE_NAME, SITE_URL } from '@/lib/site'
 import '@/styles/tailwind.css'
 
 const description =
-  'Jacob Goldring is a full stack engineer working on white-label digital banking, and the co-founder and CTO of Vamo, two apps and a website that connect shoppers, vendors and the hosts who run local markets.'
+  'Jacob Goldring is a full stack engineer who builds banking apps for credit unions. He is also the co-founder and CTO of Vamo, two apps and a website for shoppers, vendors and the hosts who run local markets.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

@@ -1,38 +1,42 @@
 'use client'
 
-import { createContext, useContext, useRef } from 'react'
+import { createContext, useContext } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 
 const FadeInStaggerContext = createContext(false)
 
-const viewport = { once: true, margin: '0px 0px -160px' }
+const viewport = { once: true, amount: 0.2 }
 
 const easeAppleOut = [0.22, 1, 0.36, 1] as const
 
 /**
- * Fades a block up into place as it scrolls into view. Its neumorphic shadows rise with
- * it: --lift follows the fade's opacity, and the Tailwind `neu` shadows scale by it.
+ * Fades a block up into place once a fifth of it is on screen. `blur` also brings it
+ * from soft to sharp; keep that for text and cards, since blurring a large panel is
+ * expensive to draw. Only opacity, transform and filter animate, so the neumorphic
+ * shadows are never repainted frame by frame.
  */
-export function FadeIn(
-  props: React.ComponentPropsWithoutRef<typeof motion.div>,
-) {
+export function FadeIn({
+  blur = false,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof motion.div> & { blur?: boolean }) {
   let shouldReduceMotion = useReducedMotion()
   let isInStaggerGroup = useContext(FadeInStaggerContext)
-  let ref = useRef<HTMLDivElement>(null)
 
   return (
     <motion.div
-      ref={ref}
-      onUpdate={(latest) =>
-        ref.current?.style.setProperty('--lift', String(latest.opacity))
-      }
       variants={{
         hidden: shouldReduceMotion
           ? { opacity: 1, y: 0 }
-          : { opacity: 0, y: 12 },
-        visible: { opacity: 1, y: 0 },
+          : { opacity: 0, y: 24, ...(blur ? { filter: 'blur(6px)' } : {}) },
+        visible: {
+          opacity: 1,
+          y: 0,
+          ...(blur
+            ? { filter: 'blur(0px)', transitionEnd: { filter: 'none' } }
+            : {}),
+        },
       }}
-      transition={{ duration: 0.8, ease: easeAppleOut }}
+      transition={{ duration: 0.7, ease: easeAppleOut }}
       {...(isInStaggerGroup
         ? {}
         : {

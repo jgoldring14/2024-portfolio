@@ -1,7 +1,7 @@
 # Jacob Goldring
 
-> Full stack engineer and co-founder. Builds white-label digital banking software
-> by day and runs Vamo, a platform for local markets, as co-founder and CTO.
+> Full stack engineer and co-founder. Builds banking apps for credit unions by
+> day and is the co-founder and CTO of Vamo, a startup for local markets.
 
 ## About
 
@@ -11,8 +11,8 @@ unions, where one codebase ships as a separately themed and separately
 configured product for each credit union. He is also backup on production
 mobile devops.
 
-He is co-founder and CTO of Vamo, which started as a street food finder and
-grew into a platform for night markets, farmers markets and pop-ups. It is two
+He is co-founder and CTO of Vamo, which started as a street food discovery app
+and grew into a platform for night markets, farmers markets and pop-ups. It is two
 apps and a website on one backend: the Vamo app for shoppers and vendors, Vamo
 Host for the hosts who run the markets, and a website for both. A host opens
 spaces in Vamo Host, vendors apply and pay for them in Vamo, and shoppers find
@@ -21,6 +21,11 @@ the market, its vendors and its map in Vamo.
 The Vamo app is live on the App Store and Google Play, with about 200 vendors.
 Vamo Host is on Google Play, with iOS coming soon. Two hosts are live, with
 their first markets in November 2026.
+
+Vamo is a two-person company based in Southern California. Jacob and his
+business partner both do a lot of everything. Jacob also handles mobile DevOps,
+SDK and package upgrades and security checks, and works to keep the codebase
+maintainable and well tested.
 
 ## Stack
 

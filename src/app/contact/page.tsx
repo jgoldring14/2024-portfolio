@@ -29,7 +29,7 @@ function ContactDetails() {
       <section className="rounded-[2.5rem] bg-surface p-8 shadow-neu sm:p-10">
         <h2 className="font-display text-xl font-semibold text-ink">Resume</h2>
         <p className="mt-4 text-base text-muted">
-          One page covering my work at Mahalo Banking and Vamo.
+          Want the quick version? Here&apos;s everything on one page.
         </p>
         <Button
           href={RESUME_URL}
@@ -44,7 +44,7 @@ function ContactDetails() {
 
       <section className="rounded-[2.5rem] bg-surface p-8 shadow-neu sm:p-10">
         <h2 className="font-display text-xl font-semibold text-ink">
-          Get in touch
+          Other ways to reach me
         </h2>
         <dl className="mt-6 space-y-4 text-sm">
           {contactLinks.map((item) => (
@@ -81,10 +81,10 @@ export const metadata: Metadata = {
 export default function Contact() {
   return (
     <>
-      <PageIntro eyebrow="Contact" title="Let's work together.">
+      <PageIntro eyebrow="Contact" title="Say hello">
         <p>
-          Send me a note about a role, a project or anything Vamo related. I
-          read everything that comes through.
+          Got a question about Vamo or something you saw here? Send me a message
+          and I&apos;ll get back to you.
         </p>
       </PageIntro>
 

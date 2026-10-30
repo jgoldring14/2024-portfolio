@@ -61,7 +61,7 @@ const findings: Array<Finding> = [
 export const metadata: Metadata = {
   title: 'laws-of-ux',
   description:
-    'A Claude skill that reviews mobile and web UI against ten UX laws from psychology and says how to fix what breaks them.',
+    'A Claude skill that checks app and website screens against ten UX laws from psychology and tells you how to fix what breaks them.',
   alternates: { canonical: '/work/laws-of-ux' },
 }
 
@@ -73,7 +73,7 @@ function Section({
   children: React.ReactNode
 }) {
   return (
-    <FadeIn className="mt-16 first:mt-0">
+    <FadeIn blur className="mt-16 first:mt-0">
       <section>
         <h2 className="font-display text-2xl font-semibold text-ink">
           {title}
@@ -141,13 +141,13 @@ export default function LawsOfUx() {
   return (
     <>
       <PageIntro
-        eyebrow="Case study"
-        title="Your users shouldn't need a manual."
+        eyebrow="Claude skill"
+        title="Your users shouldn't need a manual"
       >
         <p>
-          laws-of-ux is a Claude skill that reviews mobile and web UI against
-          ten UX laws from psychology, and tells you how to fix what breaks
-          them.
+          laws-of-ux is a Claude skill that checks app and website screens
+          against ten UX laws from psychology. When something breaks a law it
+          tells you how to fix it.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button
@@ -171,26 +171,27 @@ export default function LawsOfUx() {
               <p>
                 I&apos;m not a UX designer, but I design every screen in the
                 apps I build. I want Vamo and Vamo Host to make sense without
-                anyone explaining them, and to look modern and professional, not
-                just functional.
+                anyone having to explain them. I also want them to look modern
+                and polished, not just work.
               </p>
             </Section>
 
-            <Section title="The approach: book, spec, skill">
+            <Section title="From book to skill">
               <p>
                 I read <em>Laws of UX</em> by Jon Yablonski. It takes what
                 psychology knows about how people use things and turns it into
-                rules for design: more choices slow us down, we remember an
-                experience by its most intense moment and its ending, and we
-                expect an app to work like the ones we already use.
+                design rules. For example, more choices slow us down. We
+                remember an experience by its best or worst moment and how it
+                ended. And we expect a new app to work like the ones we already
+                use.
               </p>
               <p>
-                I wrote a spec before any of the skill existed: which ten laws,
-                what a finding looks like, and what should never be flagged.
-                Then I built the skill from it, with a little help from Claude
-                through Anthropic&apos;s skill-creator workflow. The main file
-                is about 90 lines. The detail lives in 19 reference files that
-                load only when a review needs them.
+                Before I built anything I wrote a spec. It covered which ten
+                laws to use, what a finding looks like and what should never get
+                flagged. Then I built the skill from that spec with a little
+                help from Claude and Anthropic&apos;s skill-creator workflow.
+                The main file is about 90 lines. The details live in 19
+                reference files that only load when a review needs them.
               </p>
               <ul
                 role="list"
@@ -210,35 +211,35 @@ export default function LawsOfUx() {
 
             <Section title="How it works">
               <p>
-                It takes code or a screenshot. When Claude is building UI, it
-                applies the laws as it goes and only mentions the trade-offs.
-                When I ask for a review, it works through five steps.
+                It works from code or a screenshot. When Claude is building UI
+                it applies the laws as it goes and only mentions the trade-offs.
+                When I ask for a review it goes through five steps.
               </p>
               <List className="pt-4">
                 <ListItem title="Scope">
-                  It lists the screens and flows under review, starting with the
-                  main task if it was handed a whole repo.
+                  It lists the screens and flows to review. If it gets a whole
+                  repo it starts with the main task.
                 </ListItem>
                 <ListItem title="Platform">
-                  It reads package.json, or the device frame in a screenshot, to
-                  decide mobile, web or both, then loads only those guides. An
-                  Expo app that also ships to the web gets both.
+                  It reads package.json or the device frame in a screenshot to
+                  figure out mobile, web or both. Then it loads only the guides
+                  it needs. An Expo app that also ships to the web gets both.
                 </ListItem>
                 <ListItem title="Ten quick checks">
-                  One question per law. When a check hits, it reads that
-                  law&apos;s file, including how the law gets misused, before it
-                  writes anything down.
+                  One question per law. When a check hits it reads that
+                  law&apos;s file before writing anything down, including how
+                  the law gets misused.
                 </ListItem>
-                <ListItem title="Ethics, every time">
+                <ListItem title="Ethics every time">
                   Pre-checked consent, fake urgency, hidden costs and a cancel
-                  you can&apos;t find are always Blockers. Money, shopping and
-                  social products get extra rules on top.
+                  button you can&apos;t find are always Blockers. Apps that
+                  handle money, shopping or social get extra rules on top.
                 </ListItem>
                 <ListItem title="Report">
-                  Every finding gives the location, the law, what&apos;s wrong
-                  and the fix, grouped as Blocker, Should fix or Nice to have.
-                  It also lists what it checked and found fine, and what it
-                  couldn&apos;t verify without a real device.
+                  Every finding lists where it is, the law, what&apos;s wrong
+                  and how to fix it. They&apos;re grouped as Blocker, Should fix
+                  or Nice to have. It also says what it checked and found fine,
+                  plus anything it couldn&apos;t verify without a real device.
                 </ListItem>
               </List>
               <p className="pt-4">
@@ -247,10 +248,10 @@ export default function LawsOfUx() {
               </p>
             </Section>
 
-            <Section title="An example finding">
+            <Section title="Example findings">
               <p>
                 The first one came from running the skill on this site before
-                the redesign, and I fixed it as part of the redesign. The second
+                the redesign. I fixed it as part of the redesign. The second
                 came from a test scenario.
               </p>
               <div className="grid gap-6 pt-4">
@@ -262,13 +263,14 @@ export default function LawsOfUx() {
 
             <Section title="Testing">
               <p>
-                I tested it against five scenarios, from a React Native login
-                screen to a SQL question it should ignore. All 33 checks passed.
+                I tested it on five scenarios, from a React Native login screen
+                to a SQL question it should ignore. All 33 checks passed.
               </p>
               <p>
                 The same Claude session that helped build the skill also ran
-                those checks, so they show it does what the spec says. They
-                don&apos;t replace a review by someone who designs for a living.
+                those checks. So they show it does what the spec says, but they
+                don&apos;t replace a review from someone who designs for a
+                living.
               </p>
             </Section>
           </div>

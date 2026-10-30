@@ -20,7 +20,7 @@ export function SectionIntro({
 }) {
   return (
     <Container {...props}>
-      <FadeIn className="max-w-2xl">
+      <FadeIn blur className="max-w-2xl">
         <h2>
           {eyebrow && (
             <>
