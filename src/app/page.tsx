@@ -102,14 +102,14 @@ const stack = [
 function Portrait() {
   return (
     <Tilt className="mx-auto hidden p-14 lg:block">
-      <div className="flex h-64 w-64 rotate-45 items-center justify-center rounded-[3rem] bg-surface bg-convex-diamond shadow-neu-diamond">
-        <div className="rounded-[2.25rem] p-4 shadow-neu-diamond-inset">
-          <div className="h-44 w-44 overflow-hidden rounded-[1.5rem]">
+      <div className="flex h-64 w-64 rotate-45 items-center justify-center rounded-[3rem] bg-surface bg-convex-diamond shadow-neu-diamond xl:h-80 xl:w-80 xl:rounded-[3.75rem]">
+        <div className="rounded-[2.25rem] p-4 shadow-neu-diamond-inset xl:rounded-[2.75rem] xl:p-5">
+          <div className="h-44 w-44 overflow-hidden rounded-[1.5rem] xl:h-56 xl:w-56 xl:rounded-[1.75rem]">
             <Image
               src={imageJacobIllustrated}
               alt="Jacob Goldring"
               className="h-full w-full object-cover [transform:rotate(-45deg)_scale(1.45)]"
-              sizes="16rem"
+              sizes="20rem"
               priority
             />
           </div>
