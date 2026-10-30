@@ -9,9 +9,11 @@ I write the mobile app, the API behind it, and the data layer underneath.
 
 ### Vamo
 
-**Vamo** is street food, found. Open it to see the taco cart, the pop-up, the market happening four blocks from you. Vendors run their whole operation from the same download: go live on the map, post menus, take pickup and catering requests. Two audiences, one app. Live on iOS and Android.
+Vamo started as a street food finder and grew into a platform for local markets: two apps and a website on one backend, connecting shoppers, vendors and the hosts who run the markets.
 
-**Vamo Host** is for the people who run the markets. Applications, slots, payments, events. Our first live market runs November 14 and 15, 2026, with 15 vendors taking real payments.
+**Vamo** is local markets and the vendors who make them. Shoppers find night markets, farmers markets and pop-ups nearby and follow the market map to any space. Vendors apply for spaces, pay to lock them in and chat with the host from the same app. Two audiences, one app. Live on iOS and Android.
+
+**Vamo Host** is for the hosts who run the markets. Spaces and prices, vendor applications, market maps and payouts. On Google Play, with iOS coming soon. Our first live market runs November 14 and 15, 2026, with 15 vendors taking real payments.
 
 **The website** started as a landing page. It's turning into a third client against the same database, so everything the apps do works in a browser too.
 

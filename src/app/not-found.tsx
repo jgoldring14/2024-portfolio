@@ -1,27 +1,24 @@
-import Link from 'next/link'
-
+import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 
 export default function NotFound() {
   return (
     <Container className="flex h-full items-center pt-24 sm:pt-32 lg:pt-40">
-      <FadeIn className="flex max-w-xl flex-col items-center text-center">
-        <p className="font-display text-4xl font-semibold text-neutral-950 dark:text-white sm:text-5xl">
+      <FadeIn className="mx-auto flex max-w-xl flex-col items-center rounded-[2.5rem] bg-surface px-8 py-12 text-center shadow-neu sm:px-16">
+        <p className="flex h-28 w-40 items-center justify-center rounded-[1.75rem] font-display text-5xl font-semibold text-accent shadow-neu-inset">
           404
         </p>
-        <h1 className="mt-4 font-display text-2xl font-semibold text-neutral-950 dark:text-white">
+        <h1 className="mt-8 font-display text-2xl font-semibold text-ink">
           Page not found
         </h1>
-        <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
-          That page doesn&apos;t exist. It may have moved when the site was rebuilt.
+        <p className="mt-2 text-base text-muted">
+          That page doesn&apos;t exist. It may have moved when the site was
+          rebuilt.
         </p>
-        <Link
-          href="/"
-          className="mt-4 text-sm font-semibold text-neutral-950 dark:text-white transition hover:text-neutral-700"
-        >
+        <Button href="/" className="mt-8">
           Go to the home page
-        </Link>
+        </Button>
       </FadeIn>
     </Container>
   )

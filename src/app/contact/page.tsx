@@ -1,61 +1,64 @@
 import { type Metadata } from 'next'
 import Link from 'next/link'
 
-import { Border } from '@/components/Border'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
-import { SocialMedia } from '@/components/SocialMedia'
 import { RESUME_URL } from '@/lib/site'
 import { ContactForm } from './contact-form'
 
+const contactLinks = [
+  {
+    label: 'LinkedIn',
+    display: 'jacobgoldring14',
+    href: 'https://www.linkedin.com/in/jacobgoldring14',
+    external: true,
+  },
+  {
+    label: 'Email',
+    display: 'jacobgoldring14@gmail.com',
+    href: 'mailto:jacobgoldring14@gmail.com?subject=Hello%20Jacob',
+    external: false,
+  },
+]
+
 function ContactDetails() {
   return (
-    <FadeIn>
-      <h2 className="font-display text-base font-bold text-neutral-950 dark:text-white">
-        Resume
-      </h2>
-      <p className="mt-6 text-base text-neutral-600 dark:text-neutral-400">
-        One page covering my work at Mahalo Banking and Vamo.
-      </p>
-      <Button
-        href={RESUME_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-6"
-      >
-        View resume (PDF)
-      </Button>
-      <Border className="mt-8 pt-16">
-        <h2 className="font-display text-base font-semibold text-neutral-950 dark:text-white">
+    <FadeIn className="space-y-8">
+      <section className="rounded-[2.5rem] bg-surface p-8 shadow-neu sm:p-10">
+        <h2 className="font-display text-xl font-semibold text-ink">Resume</h2>
+        <p className="mt-4 text-base text-muted">
+          One page covering my work at Mahalo Banking and Vamo.
+        </p>
+        <Button
+          href={RESUME_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="secondary"
+          className="mt-6"
+        >
+          View resume (PDF)
+        </Button>
+      </section>
+
+      <section className="rounded-[2.5rem] bg-surface p-8 shadow-neu sm:p-10">
+        <h2 className="font-display text-xl font-semibold text-ink">
           Get in touch
         </h2>
-        <dl className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2">
-          {[
-            {
-              label: 'LinkedIn',
-              display: 'jacobgoldring14',
-              href: 'https://www.linkedin.com/in/jacobgoldring14',
-              external: true,
-            },
-            {
-              label: 'Email',
-              display: 'jacobgoldring14@gmail.com',
-              href: 'mailto:jacobgoldring14@gmail.com?subject=Hello%20Jacob',
-              external: false,
-            },
-          ].map((item) => (
-            <div key={item.label}>
-              <dt className="font-semibold text-neutral-950 dark:text-white">
-                {item.label}
-              </dt>
-              <dd className="mt-1 break-words">
+        <dl className="mt-6 space-y-4 text-sm">
+          {contactLinks.map((item) => (
+            <div
+              key={item.label}
+              className="rounded-[1.5rem] px-5 py-4 shadow-neu-inset-sm"
+            >
+              <dt className="font-semibold text-ink">{item.label}</dt>
+              <dd className="break-words">
                 <Link
                   href={item.href}
                   target={item.external ? '_blank' : undefined}
                   rel={item.external ? 'noopener noreferrer' : undefined}
-                  className="text-neutral-600 transition hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-white"
+                  className="inline-flex min-h-10 items-center font-semibold text-primary-text underline-offset-4 hover:underline"
                 >
                   {item.display}
                 </Link>
@@ -63,21 +66,15 @@ function ContactDetails() {
             </div>
           ))}
         </dl>
-      </Border>
-
-      <Border className="mt-16 pt-16">
-        <h2 className="font-display text-base font-semibold text-neutral-950 dark:text-white">
-          Connect with me
-        </h2>
-        <SocialMedia className="mt-6" />
-      </Border>
+      </section>
     </FadeIn>
   )
 }
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Get in touch with Jacob Goldring by email, LinkedIn or the contact form.',
+  description:
+    'Get in touch with Jacob Goldring by email, LinkedIn or the contact form.',
   alternates: { canonical: '/contact' },
 }
 
@@ -91,8 +88,8 @@ export default function Contact() {
         </p>
       </PageIntro>
 
-      <Container className="mt-24 sm:mt-32 lg:mt-40">
-        <div className="grid grid-cols-1 gap-x-8 gap-y-24 lg:grid-cols-2">
+      <Container className="mt-16 sm:mt-24">
+        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[3fr_2fr]">
           <ContactForm />
           <ContactDetails />
         </div>

@@ -1,28 +1,26 @@
 'use client'
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
-import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
+import {
+  AnimatePresence,
+  motion,
+  MotionConfig,
+  useReducedMotion,
+} from 'framer-motion'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Footer } from '@/components/Footer'
-import { GridPattern } from '@/components/GridPattern'
 import { SocialMedia } from '@/components/SocialMedia'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
-const RootLayoutContext = createContext<{
-  logoHovered: boolean
-  setLogoHovered: React.Dispatch<React.SetStateAction<boolean>>
-} | null>(null)
+const navigation = [
+  { title: 'Work', href: '/work' },
+  { title: 'About', href: '/about' },
+]
 
 function XIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -41,230 +39,134 @@ function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-function Header({
-  panelId,
-  icon: Icon,
-  expanded,
-  onToggle,
-  toggleRef,
-  invert = false,
-}: {
-  panelId: string
-  icon: React.ComponentType<{ className?: string }>
-  expanded: boolean
-  onToggle: () => void
-  toggleRef: React.RefObject<HTMLButtonElement>
-  invert?: boolean
-}) {
-  let { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!
-
-  return (
-    <Container>
-      <div className="flex items-center justify-between">
-        <Link
-          href="/"
-          aria-label="Home"
-          onMouseEnter={() => setLogoHovered(true)}
-          onMouseLeave={() => setLogoHovered(false)}
-        >
-          <span
-            className={clsx(
-              'whitespace-nowrap font-display text-xl font-medium tracking-tight sm:text-2xl',
-              invert ? 'text-white' : 'text-neutral-950 dark:text-white',
-            )}
-          >
-            Jacob Goldring
-          </span>
-        </Link>
-        <div className="flex items-center gap-x-8">
-          <Button href="/contact" invert={invert}>
-            Contact
-          </Button>
-          <button
-            ref={toggleRef}
-            type="button"
-            onClick={onToggle}
-            aria-expanded={expanded ? 'true' : 'false'}
-            aria-controls={panelId}
-            className={clsx(
-              'group -m-2.5 rounded-full p-2.5 transition',
-              invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10 dark:hover:bg-white/10',
-            )}
-            aria-label="Toggle navigation"
-          >
-            <Icon
-              className={clsx(
-                'h-6 w-6',
-                invert
-                  ? 'fill-white group-hover:fill-neutral-200'
-                  : 'fill-neutral-950 dark:fill-white group-hover:fill-neutral-700',
-              )}
-            />
-          </button>
-        </div>
-      </div>
-    </Container>
-  )
-}
-
-function NavigationRow({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="even:mt-px sm:bg-neutral-950">
-      <Container>
-        <div className="grid grid-cols-1 sm:grid-cols-2">{children}</div>
-      </Container>
-    </div>
-  )
-}
-
-function NavigationItem({
+function NavLink({
   href,
   children,
 }: {
   href: string
   children: React.ReactNode
 }) {
+  let pathname = usePathname()
+  let active = pathname === href || pathname.startsWith(`${href}/`)
+
   return (
     <Link
       href={href}
-      className="group relative isolate -mx-6 bg-neutral-950 px-6 py-10 even:mt-px sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-l sm:even:border-neutral-800 sm:even:pl-16"
+      aria-current={active ? 'page' : undefined}
+      className={clsx(
+        'flex h-11 items-center rounded-full px-5 text-sm font-semibold transition duration-150',
+        active
+          ? 'text-primary-text shadow-neu-inset-sm'
+          : 'text-ink hover:text-primary-text',
+      )}
     >
       {children}
-      <span className="absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-0 transition group-odd:right-0 group-even:left-0 group-hover:opacity-100" />
     </Link>
   )
 }
 
-function Navigation() {
-  return (
-    <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
-      <NavigationRow>
-        <NavigationItem href="/work">Work</NavigationItem>
-        <NavigationItem href="/about">About</NavigationItem>
-      </NavigationRow>
-    </nav>
-  )
-}
-
-function RootLayoutInner({ children }: { children: React.ReactNode }) {
+/** Shared header: name, page links, Contact and the theme switch. Collapses to a menu below md. */
+function Header() {
   let panelId = useId()
   let [expanded, setExpanded] = useState(false)
-  let openRef = useRef<React.ElementRef<'button'>>(null)
-  let closeRef = useRef<React.ElementRef<'button'>>(null)
-  let navRef = useRef<React.ElementRef<'div'>>(null)
-  let shouldReduceMotion = useReducedMotion()
+  let toggleRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    function onClick(event: MouseEvent) {
-      if (
-        event.target instanceof HTMLElement &&
-        event.target.closest('a')?.href === window.location.href
-      ) {
+    if (!expanded) return
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
         setExpanded(false)
+        toggleRef.current?.focus()
       }
     }
-
-    window.addEventListener('click', onClick)
-
-    return () => {
-      window.removeEventListener('click', onClick)
-    }
-  }, [])
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [expanded])
 
   return (
-    <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>
-      <header>
-        <div
-          className="absolute left-0 right-0 top-2 z-40 pt-14"
-          aria-hidden={expanded ? 'true' : undefined}
-          // @ts-ignore (https://github.com/facebook/react/issues/17157)
-          inert={expanded ? '' : undefined}
-        >
-          <Header
-            panelId={panelId}
-            icon={MenuIcon}
-            toggleRef={openRef}
-            expanded={expanded}
-            onToggle={() => {
-              setExpanded((expanded) => !expanded)
-              window.setTimeout(() =>
-                closeRef.current?.focus({ preventScroll: true }),
-              )
-            }}
-          />
+    <header className="relative z-40 pt-6 sm:pt-8">
+      <Container>
+        <div className="flex items-center justify-between gap-4 rounded-[2rem] bg-surface py-2.5 pl-6 pr-2.5 shadow-neu">
+          <Link
+            href="/"
+            className="whitespace-nowrap font-display text-lg font-semibold tracking-tight text-ink sm:text-xl"
+          >
+            Jacob Goldring
+          </Link>
+
+          <nav aria-label="Main" className="hidden items-center gap-2 md:flex">
+            {navigation.map((item) => (
+              <NavLink key={item.href} href={item.href}>
+                {item.title}
+              </NavLink>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <Button href="/contact" className="hidden md:inline-flex">
+              Contact
+            </Button>
+            <ThemeToggle />
+            <button
+              ref={toggleRef}
+              type="button"
+              onClick={() => setExpanded((open) => !open)}
+              aria-expanded={expanded}
+              aria-controls={panelId}
+              aria-label={expanded ? 'Close menu' : 'Open menu'}
+              className={clsx(
+                'flex h-11 w-11 items-center justify-center rounded-full bg-surface text-ink transition md:hidden',
+                expanded ? 'shadow-neu-inset-sm' : 'bg-convex shadow-neu-sm',
+              )}
+            >
+              {expanded ? (
+                <XIcon className="h-5 w-5 fill-current" />
+              ) : (
+                <MenuIcon className="h-5 w-5 fill-current" />
+              )}
+            </button>
+          </div>
         </div>
 
-        <motion.div
-          layout
-          id={panelId}
-          style={{ height: expanded ? 'auto' : '0.5rem' }}
-          className="relative z-50 overflow-hidden bg-neutral-950 pt-2"
-          aria-hidden={expanded ? undefined : 'true'}
-          // @ts-ignore (https://github.com/facebook/react/issues/17157)
-          inert={expanded ? undefined : ''}
-        >
-          <motion.div layout className="bg-neutral-800">
-            <div ref={navRef} className="bg-neutral-950 pb-16 pt-14">
-              <Header
-                invert
-                panelId={panelId}
-                icon={XIcon}
-                toggleRef={closeRef}
-                expanded={expanded}
-                onToggle={() => {
-                  setExpanded((expanded) => !expanded)
-                  window.setTimeout(() =>
-                    openRef.current?.focus({ preventScroll: true }),
-                  )
-                }}
-              />
-            </div>
-            <Navigation />
-            <div className="relative bg-neutral-950 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-neutral-800">
-              <Container>
-                <div className="grid grid-cols-1 gap-y-10 pb-16 pt-10 sm:grid-cols-2 sm:pt-16">
-                  <div className="sm:border-l sm:border-transparent sm:pl-16">
-                    <h2 className="font-display text-base font-semibold text-white">
-                      Connect with me
-                    </h2>
-                    <SocialMedia className="mt-6" invert />
-                  </div>
-                </div>
-              </Container>
-            </div>
-          </motion.div>
-        </motion.div>
-      </header>
-
-      <motion.div
-        layout
-        style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
-        className="relative flex flex-auto overflow-hidden bg-white pt-14 dark:bg-neutral-950"
-      >
-        <motion.div
-          layout
-          className="relative isolate flex w-full flex-col pt-9"
-        >
-          <GridPattern
-            className="absolute inset-x-0 -top-14 -z-10 h-[1000px] w-full fill-neutral-50 stroke-neutral-950/5 dark:fill-neutral-900 dark:stroke-white/5 [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
-            yOffset={-96}
-            interactive
-          />
-          <main className="w-full flex-auto">{children}</main>
-          <Footer />
-        </motion.div>
-      </motion.div>
-    </MotionConfig>
+        <AnimatePresence>
+          {expanded && (
+            <motion.div
+              id={panelId}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.18 }}
+              className="absolute inset-x-6 top-full mt-4 rounded-[2rem] bg-surface p-4 shadow-neu-lg md:hidden"
+            >
+              <nav aria-label="Main" className="flex flex-col gap-2">
+                {[...navigation, { title: 'Contact', href: '/contact' }].map(
+                  (item) => (
+                    <NavLink key={item.href} href={item.href}>
+                      {item.title}
+                    </NavLink>
+                  ),
+                )}
+              </nav>
+              <div className="mt-4 border-t border-line/30 px-5 pt-5">
+                <SocialMedia />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </Container>
+    </header>
   )
 }
 
 export function RootLayout({ children }: { children: React.ReactNode }) {
   let pathname = usePathname()
-  let [logoHovered, setLogoHovered] = useState(false)
+  let shouldReduceMotion = useReducedMotion()
 
   return (
-    <RootLayoutContext.Provider value={{ logoHovered, setLogoHovered }}>
-      <RootLayoutInner key={pathname}>{children}</RootLayoutInner>
-    </RootLayoutContext.Provider>
+    <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>
+      <Header key={pathname} />
+      <main className="w-full flex-auto">{children}</main>
+      <Footer />
+    </MotionConfig>
   )
 }

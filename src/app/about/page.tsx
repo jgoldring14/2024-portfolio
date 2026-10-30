@@ -11,22 +11,24 @@ function Portrait() {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
-        <div className="group relative max-w-md overflow-hidden rounded-3xl bg-neutral-100 dark:bg-neutral-900">
-          <Image
-            alt="Jacob Goldring"
-            src={imageJacobGoldring}
-            sizes="(min-width: 640px) 28rem, 100vw"
-            className="h-96 w-full object-cover grayscale transition duration-500 ease-apple-out motion-safe:group-hover:scale-105"
-          />
-          <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black to-black/0 to-40% p-6">
-            <p className="font-display text-base/6 font-semibold tracking-wide text-white">
+        <figure className="group max-w-md rounded-[2.5rem] bg-surface p-4 shadow-neu">
+          <div className="overflow-hidden rounded-[2rem] shadow-neu-inset">
+            <Image
+              alt="Jacob Goldring"
+              src={imageJacobGoldring}
+              sizes="(min-width: 640px) 28rem, 100vw"
+              className="h-96 w-full object-cover grayscale transition duration-500 ease-apple-out group-hover:grayscale-0"
+            />
+          </div>
+          <figcaption className="px-4 pb-2 pt-5">
+            <p className="font-display text-base/6 font-semibold tracking-wide text-ink">
               Jacob Goldring
             </p>
-            <p className="mt-2 text-sm text-white">
+            <p className="mt-1 text-sm text-muted">
               Full stack engineer. Co-founder and CTO at Vamo.
             </p>
-          </div>
-        </div>
+          </figcaption>
+        </figure>
       </FadeIn>
     </Container>
   )
@@ -46,9 +48,9 @@ export default function About() {
         <div className="mt-10 max-w-2xl space-y-6 text-base">
           <p>
             I started coding in 2020 with a course I took after work, then went
-            all in. In 2021 I did Flatiron School&apos;s full-time
-            immersive program, about 16 hours a day, five or six days a week,
-            learning JavaScript, React, Ruby and Rails.
+            all in. In 2021 I did Flatiron School&apos;s full-time immersive
+            program, about 16 hours a day, five or six days a week, learning
+            JavaScript, React, Ruby and Rails.
           </p>
           <p>
             Since 2022 I&apos;ve built software that credit union members use to

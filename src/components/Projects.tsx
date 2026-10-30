@@ -1,94 +1,113 @@
-import clsx from 'clsx'
-import Link from 'next/link'
+import { Button } from '@/components/Button'
 
 type ProjectLink = { label: string; href: string }
 
 type Project = {
   name: string
+  audience: string
   description: string
   tech: string
   links: Array<ProjectLink>
+  comingSoon?: string
 }
 
 const projects: Array<Project> = [
   {
     name: 'Vamo',
+    audience: 'For shoppers and vendors',
     description:
-      'A street food app with two audiences in one download. Diners find the taco cart, the pop-up and the market happening nearby. Vendors go live on the map, post menus and take pickup and catering requests. Live on iOS and Android.',
+      'Local markets and the vendors who make them, in one app. Shoppers find night markets, farmers markets and pop-ups nearby, see the vendor lineup and follow the market map to any space. Vendors apply for spaces, pay to lock them in, and get their setup time and a group chat for every market. Live on iOS and Android.',
     tech: 'React Native, Expo, TypeScript, Tamagui, Supabase, Redux Toolkit',
     links: [
-      { label: 'App Store', href: 'https://apps.apple.com/us/app/vamo-discover-street-food/id6737868193' },
-      { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.vamo.app' },
+      {
+        label: 'App Store',
+        href: 'https://apps.apple.com/us/app/vamo-discover-street-food/id6737868193',
+      },
+      {
+        label: 'Google Play',
+        href: 'https://play.google.com/store/apps/details?id=com.vamo.app',
+      },
     ],
   },
   {
     name: 'Vamo Host',
+    audience: 'For hosts',
     description:
-      'The organizer side of the marketplace, for the people who run the markets. Vendor applications, slots, payments and event management, on the same backend as the main app. First live market November 2026.',
+      'The host side of the marketplace, for the people who run the markets. Spaces and prices, vendor applications, market maps, arrival groups and payouts, on the same backend as the main app. First live market November 2026.',
     tech: 'React Native, Expo, TypeScript, Supabase, Stripe',
-    links: [{ label: 'hellovamo.app', href: 'https://hellovamo.app' }],
+    links: [
+      {
+        label: 'Google Play',
+        href: 'https://play.google.com/store/apps/details?id=com.vamo.host',
+      },
+      { label: 'hellovamo.app', href: 'https://hellovamo.app' },
+    ],
+    comingSoon: 'iOS coming soon',
   },
   {
     name: 'Vamo Website',
+    audience: 'No download needed',
     description:
-      "Started as a landing page. Now it's growing into a full version of Vamo in the browser, so diners, vendors and organizers can do on the web what they do in the apps.",
+      "Everything in the apps, in your browser, for shoppers, vendors and hosts. Handy when you don't want to download anything, but the apps are better on the go.",
     tech: 'Next.js, TypeScript, Tailwind, Supabase',
     links: [{ label: 'hellovamo.app', href: 'https://hellovamo.app' }],
   },
 ]
 
-function ProjectItem({
-  project,
-  invert,
-}: {
-  project: Project
-  invert: boolean
-}) {
+function ProjectItem({ project }: { project: Project }) {
   return (
-    <div className={clsx('text-sm', invert ? 'text-neutral-300' : 'text-neutral-600')}>
-      <strong
-        className={clsx(
-          'font-display text-xl font-semibold',
-          invert ? 'text-white' : 'text-neutral-950',
-        )}
-      >
-        {project.name}
-      </strong>
-      <p className="mt-4">{project.description}</p>
-      <p className={clsx('mt-4', invert ? 'text-neutral-400' : 'text-neutral-500')}>
-        {project.tech}
+    <article className="flex w-full flex-col rounded-[2rem] bg-surface p-8 shadow-neu transition duration-300 ease-apple-out hover:-translate-y-1 hover:shadow-neu-lg motion-reduce:hover:translate-y-0">
+      <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+        {project.audience}
       </p>
-      <div className="mt-6 flex flex-wrap gap-x-8 gap-y-2">
+      <h3 className="mt-2 font-display text-2xl font-semibold text-ink">
+        {project.name}
+      </h3>
+      <p className="mt-4 flex-auto text-base text-muted">
+        {project.description}
+      </p>
+      <ul
+        role="list"
+        aria-label="Built with"
+        className="mt-6 flex flex-wrap gap-2"
+      >
+        {project.tech.split(', ').map((item) => (
+          <li
+            key={item}
+            className="cursor-default rounded-full px-3 py-1 text-xs font-semibold text-muted shadow-neu-inset-sm transition duration-200 hover:bg-convex hover:text-primary-text hover:shadow-neu-sm"
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+      <div className="mt-8 flex flex-wrap gap-3">
         {project.links.map((link) => (
-          <Link
+          <Button
             key={link.label}
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className={clsx(
-              'text-sm font-semibold transition',
-              invert
-                ? 'text-vamo-400 hover:text-vamo-100'
-                : 'text-vamo-600 hover:text-vamo-700',
-            )}
+            variant="secondary"
           >
             {link.label}
-          </Link>
+          </Button>
         ))}
+        {project.comingSoon && (
+          <span className="inline-flex h-11 items-center rounded-full px-5 text-sm font-semibold text-muted shadow-neu-inset-sm">
+            {project.comingSoon}
+          </span>
+        )}
       </div>
-    </div>
+    </article>
   )
 }
 
-export function Projects({
-  invert = false,
-  ...props
-}: React.ComponentPropsWithoutRef<'ul'> & { invert?: boolean }) {
+export function Projects(props: React.ComponentPropsWithoutRef<'ul'>) {
   return (
     <ul role="list" {...props}>
       {projects.map((project) => (
-        <li key={project.name}>
-          <ProjectItem project={project} invert={invert} />
+        <li key={project.name} className="flex">
+          <ProjectItem project={project} />
         </li>
       ))}
     </ul>
