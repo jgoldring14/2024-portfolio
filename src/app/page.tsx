@@ -11,7 +11,7 @@ import { MemberCount } from '@/components/MemberCount'
 import { ProfileActions } from '@/components/ProfileActions'
 import { SectionIntro } from '@/components/SectionIntro'
 import { Tilt } from '@/components/Tilt'
-import imageJacobGoldring from '../../public/images/jacob-goldring.jpg'
+import imageJacobIllustrated from '../../public/images/jacob-illustrated.webp'
 import imageLaptopDesk from '../../public/images/laptop-desk.jpg'
 import imageVamoHostIcon from '../../public/images/vamo-host-icon.png'
 import imageVamoIcon from '../../public/images/vamo-icon.png'
@@ -96,21 +96,21 @@ const stack = [
 ]
 
 /**
- * A raised diamond, turned 45deg like an infield, with the photo kept upright in an
- * inset well. The face sits right of center in the original photo, so the image is
- * zoomed past what fills the frame and nudged left until the face lands in the middle.
+ * A raised diamond, turned 45deg like an infield, with the illustrated portrait kept
+ * upright in an inset well and zoomed just enough to fill the diamond's corners. The
+ * image has extra background above and beside the figure so the whole head fits.
  */
 function Portrait() {
   return (
     <Tilt className="mx-auto hidden p-14 lg:block">
-      <div className="flex h-64 w-64 rotate-45 items-center justify-center rounded-[3rem] bg-surface bg-convex-diamond shadow-neu-diamond">
-        <div className="rounded-[2.25rem] p-4 shadow-neu-diamond-inset">
-          <div className="h-44 w-44 overflow-hidden rounded-[1.5rem]">
+      <div className="flex h-64 w-64 rotate-45 items-center justify-center rounded-[3rem] bg-surface bg-convex-diamond shadow-neu-diamond xl:h-80 xl:w-80 xl:rounded-[3.75rem]">
+        <div className="rounded-[2.25rem] p-4 shadow-neu-diamond-inset xl:rounded-[2.75rem] xl:p-5">
+          <div className="h-44 w-44 overflow-hidden rounded-[1.5rem] xl:h-56 xl:w-56 xl:rounded-[1.75rem]">
             <Image
-              src={imageJacobGoldring}
+              src={imageJacobIllustrated}
               alt="Jacob Goldring"
-              className="h-full w-full object-cover object-[center_38%] [transform:rotate(-45deg)_scale(1.65)_translate(-19px,5px)]"
-              sizes="16rem"
+              className="h-full w-full object-cover [transform:rotate(-45deg)_scale(1.45)]"
+              sizes="20rem"
               priority
             />
           </div>
@@ -280,9 +280,7 @@ function StackSection() {
         eyebrow="Stack"
         title="What I reach for."
         className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>Grouped by where it sits.</p>
-      </SectionIntro>
+      />
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {stack.map((group) => (

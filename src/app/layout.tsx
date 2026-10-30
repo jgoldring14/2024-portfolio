@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: '/images/homescreen.png',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
         alt: SITE_NAME,
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${SITE_NAME}, full stack engineer and CTO`,
     description,
-    images: ['/images/homescreen.png'],
+    images: ['/images/og-image.png'],
   },
   robots: {
     index: true,
