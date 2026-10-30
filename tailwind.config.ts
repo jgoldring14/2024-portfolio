@@ -1,13 +1,9 @@
 import { type Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
-/**
- * A raised neumorphic shadow pair, lit from the top left. Every length is scaled by
- * --lift (1 when unset), which FadeIn animates from 0 so panels rise as they scroll in.
- */
+/** A raised neumorphic shadow pair, lit from the top left. */
 function raised(x: number, y: number, blur: number) {
-  let lift = (px: number) => `calc(${px}px * var(--lift, 1))`
-  return `${lift(x)} ${lift(y)} ${lift(blur)} rgb(var(--shade-dark)), ${lift(-x)} ${lift(-y)} ${lift(blur)} rgb(var(--shade-light))`
+  return `${x}px ${y}px ${blur}px rgb(var(--shade-dark)), ${-x}px ${-y}px ${blur}px rgb(var(--shade-light))`
 }
 
 export default {

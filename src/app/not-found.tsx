@@ -13,11 +13,11 @@ export default function NotFound() {
           Page not found
         </h1>
         <p className="mt-2 text-base text-muted">
-          That page doesn&apos;t exist. It may have moved when the site was
-          rebuilt.
+          Hmm, that page doesn&apos;t exist. It might have moved when I rebuilt
+          the site.
         </p>
         <Button href="/" className="mt-8">
-          Go to the home page
+          Take me home
         </Button>
       </FadeIn>
     </Container>

@@ -18,7 +18,7 @@ export function PageIntro({
     <Container
       className={clsx('mt-24 sm:mt-32 lg:mt-40', centered && 'text-center')}
     >
-      <FadeIn>
+      <FadeIn blur>
         <h1>
           <span className="inline-flex rounded-full px-4 py-1.5 font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent shadow-neu-inset-sm">
             {eyebrow}

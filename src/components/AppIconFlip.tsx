@@ -25,13 +25,13 @@ export function AppIconFlip({ className }: { className?: string }) {
       aria-label="Show the Vamo Host app icon"
       onClick={() => setFlipped((value) => !value)}
       className={clsx(
-        'group mx-auto rounded-[3rem] p-6 shadow-neu-inset [perspective:1200px]',
+        'group mx-auto rounded-[2.25rem] p-5 shadow-neu-inset [perspective:1200px] sm:rounded-[3rem] sm:p-6',
         className,
       )}
     >
       <span
         className={clsx(
-          'relative block h-44 w-44 transition-transform duration-700 ease-apple-out [transform-style:preserve-3d] motion-reduce:transition-none sm:h-52 sm:w-52',
+          'relative block h-28 w-28 transition-transform duration-700 ease-apple-out [transform-style:preserve-3d] motion-reduce:transition-none sm:h-52 sm:w-52',
           flipped
             ? '[transform:rotateY(180deg)] [@media(hover:hover)]:group-hover:[transform:rotateY(0deg)]'
             : '[@media(hover:hover)]:group-hover:[transform:rotateY(180deg)]',

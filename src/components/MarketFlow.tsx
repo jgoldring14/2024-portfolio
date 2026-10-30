@@ -8,18 +8,18 @@ import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 const steps = [
   {
     app: 'In Vamo Host',
-    title: 'Hosts open spaces.',
-    body: 'A host sets up a market in Vamo Host: spaces, prices and how vendors arrive.',
+    title: 'Hosts open spaces',
+    body: 'A host sets up their market with the spots, the prices and a plan for when vendors arrive.',
   },
   {
     app: 'In Vamo',
-    title: 'Vendors apply.',
-    body: 'Vendors find the market in Vamo, apply and pay to lock their space, right from the app.',
+    title: 'Vendors apply',
+    body: 'Vendors find the market in Vamo. They apply and pay for their spot without leaving the app.',
   },
   {
     app: 'In Vamo',
-    title: 'Shoppers show up.',
-    body: 'Shoppers see the market, the vendor lineup and the map, and get walking directions to any space.',
+    title: 'Shoppers show up',
+    body: "Shoppers check out who's selling, pull up the market map and get walking directions to any vendor.",
   },
 ]
 
@@ -50,7 +50,7 @@ export function MarketFlow() {
         <ol role="list" className="relative grid gap-8 lg:grid-cols-3">
           {steps.map((step, index) => (
             <li key={step.title} className="flex">
-              <FadeIn className="flex w-full flex-col items-center">
+              <FadeIn blur className="flex w-full flex-col items-center">
                 <span
                   aria-hidden="true"
                   className="flex h-14 w-14 items-center justify-center rounded-full bg-surface bg-convex font-display text-xl font-semibold text-primary-text shadow-neu-sm"

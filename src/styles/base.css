@@ -16,6 +16,11 @@
  * Text, primary and line colors are picked for WCAG AA against the surface.
  */
 @layer base {
+  /* Avoids a lone word on the last line of a paragraph. */
+  p {
+    text-wrap: pretty;
+  }
+
   :root {
     --surface: 228 233 240;
     --shade-light: 255 255 255;
@@ -26,7 +31,7 @@
     --primary: 0 90 156;
     --primary-ink: 255 255 255;
     --primary-text: 0 90 156;
-    --accent: 196 46 58;
+    --accent: 133 96 0;
     color-scheme: light;
   }
 
@@ -40,7 +45,7 @@
     --primary: 78 163 239;
     --primary-ink: 10 20 48;
     --primary-text: 108 180 245;
-    --accent: 255 122 127;
+    --accent: 245 197 66;
     color-scheme: dark;
   }
 

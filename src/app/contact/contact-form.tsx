@@ -31,6 +31,23 @@ interface FormValues {
   message: string
 }
 
+/** The site theme from the `dark` class on <html>, which follows the theme switch. Null until mounted. */
+function useTheme() {
+  const [theme, setTheme] = useState<'light' | 'dark' | null>(null)
+
+  useEffect(() => {
+    const root = document.documentElement
+    const update = () =>
+      setTheme(root.classList.contains('dark') ? 'dark' : 'light')
+    update()
+    const observer = new MutationObserver(update)
+    observer.observe(root, { attributes: true, attributeFilter: ['class'] })
+    return () => observer.disconnect()
+  }, [])
+
+  return theme
+}
+
 function EmailLink() {
   return (
     <Link
@@ -45,11 +62,16 @@ function EmailLink() {
 /**
  * Contact form posted to getform.io with fetch, so the visitor stays on the page and
  * sees a sending state and a thank-you. If reCAPTCHA never loads, Send stays disabled
- * and the hint offers the email address instead.
+ * and the hint offers the email address instead. The reCAPTCHA box matches the site
+ * theme; switching themes redraws it unchecked, so a check only counts for the theme
+ * it was made in.
  */
 export function ContactForm() {
   const hintId = useId()
-  const [captcha, setCaptcha] = useState<string | null>()
+  const theme = useTheme()
+  const [checkedTheme, setCheckedTheme] = useState<'light' | 'dark' | null>(
+    null,
+  )
   const [captchaState, setCaptchaState] = useState<CaptchaState>('loading')
   const [sendState, setSendState] = useState<SendState>('idle')
 
@@ -102,22 +124,23 @@ export function ContactForm() {
           className="font-display text-2xl font-semibold text-ink"
           role="status"
         >
-          Thanks, your message is on its way.
+          Thanks! Your message is on its way
         </h2>
         <p className="mt-4 text-base text-muted">
-          I&apos;ll reply to {formValues.email}.
+          I&apos;ll get back to you at {formValues.email}.
         </p>
       </FadeIn>
     )
   }
 
   const isSending = sendState === 'sending'
+  const isChecked = checkedTheme !== null && checkedTheme === theme
 
   return (
     <FadeIn className="rounded-[2.5rem] bg-surface p-8 shadow-neu sm:p-10">
       <form onSubmit={handleSubmit}>
         <h2 className="font-display text-xl font-semibold text-ink">
-          Email me
+          Send a message
         </h2>
         <div className="mt-6 space-y-5">
           <TextInput
@@ -150,42 +173,52 @@ export function ContactForm() {
             onChange={handleChange}
           />
         </div>
-        <div className="flex w-full flex-col items-end pt-6">
-          {captchaState !== 'failed' && (
-            <ReCAPTCHA
-              sitekey={String(siteKey)}
-              className="mb-4"
-              onChange={setCaptcha}
-              onExpired={() => setCaptcha(null)}
-              onErrored={() => setCaptchaState('failed')}
-              asyncScriptOnLoad={() =>
-                setCaptchaState('grecaptcha' in window ? 'ready' : 'failed')
-              }
-            />
-          )}
-          <Button
-            type="submit"
-            size="lg"
-            disabled={!captcha || isSending}
-            aria-describedby={captcha ? undefined : hintId}
-            className="w-full disabled:cursor-not-allowed disabled:opacity-50 sm:w-72"
-          >
-            {isSending ? 'Sending…' : 'Send'}
-          </Button>
-          {!captcha && captchaState !== 'failed' && (
-            <p id={hintId} className="mt-3 text-sm text-muted">
-              Check the box above to send.
+        <div className="pt-6">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            {captchaState !== 'failed' && (
+              <div className="min-h-[78px] max-sm:origin-left max-sm:scale-[0.85]">
+                {theme && (
+                  <ReCAPTCHA
+                    key={theme}
+                    sitekey={String(siteKey)}
+                    theme={theme}
+                    onChange={(token) => setCheckedTheme(token ? theme : null)}
+                    onExpired={() => setCheckedTheme(null)}
+                    onErrored={() => setCaptchaState('failed')}
+                    asyncScriptOnLoad={() =>
+                      setCaptchaState(
+                        'grecaptcha' in window ? 'ready' : 'failed',
+                      )
+                    }
+                  />
+                )}
+              </div>
+            )}
+            <Button
+              type="submit"
+              size="lg"
+              disabled={!isChecked || isSending}
+              aria-describedby={isChecked ? undefined : hintId}
+              className="ml-auto w-full disabled:cursor-not-allowed disabled:opacity-50 sm:w-60"
+            >
+              {isSending ? 'Sending…' : 'Send'}
+            </Button>
+          </div>
+          {!isChecked && captchaState !== 'failed' && (
+            <p id={hintId} className="mt-3 text-right text-sm text-muted">
+              Check the box to send
             </p>
           )}
           {captchaState === 'failed' && (
             <p id={hintId} className="mt-3 text-right text-sm text-muted">
-              The spam check didn&apos;t load, so this form can&apos;t send.
-              Email me at <EmailLink /> instead.
+              The spam check didn&apos;t load so this form can&apos;t send. You
+              can email me at <EmailLink /> instead.
             </p>
           )}
           {sendState === 'error' && (
             <p role="alert" className="mt-3 text-right text-sm text-accent">
-              That didn&apos;t send. Try again, or email me at <EmailLink />.
+              Hmm, that didn&apos;t send. Try again or email me at <EmailLink />
+              .
             </p>
           )}
         </div>

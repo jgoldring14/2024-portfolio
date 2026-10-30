@@ -9,7 +9,7 @@ I write the mobile app, the API behind it, and the data layer underneath.
 
 ### Vamo
 
-Vamo started as a street food finder and grew into a platform for local markets: two apps and a website on one backend, connecting shoppers, vendors and the hosts who run the markets.
+Vamo started as a street food discovery app and grew into a platform for local markets: two apps and a website on one backend, connecting shoppers, vendors and the hosts who run the markets.
 
 **Vamo** is local markets and the vendors who make them. Shoppers find night markets, farmers markets and pop-ups nearby and follow the market map to any space. Vendors apply for spaces, pay to lock them in and chat with the host from the same app. Two audiences, one app. Live on iOS and Android.
 
@@ -25,7 +25,7 @@ Two of us build this. Ivan is founder and CEO, I'm co-founder and CTO. Mobile an
 
 ### Mahalo Banking
 
-Digital banking for credit unions, where no two credit unions want the same app. One codebase ships as a separately themed, separately configured product for each one, down to which vendor integrations it talks to and which features exist at all. Shipping a feature means shipping every version of it that somebody might switch on.
+Mahalo builds digital banking for credit unions, and no two of them want the same app. So one codebase turns into a different app for each one. Each one gets its own look, settings, integrations and features. When I ship a feature I'm really shipping every version of it that a credit union might turn on.
 
 I work across all of it: SQL and C#/.NET APIs, the admin tools, and the React Native app members use. I'm also the backup for our mobile devops.
 
