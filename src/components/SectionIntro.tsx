@@ -8,7 +8,6 @@ export function SectionIntro({
   eyebrow,
   children,
   smaller = false,
-  invert = false,
   ...props
 }: Omit<
   React.ComponentPropsWithoutRef<typeof Container>,
@@ -18,7 +17,6 @@ export function SectionIntro({
   eyebrow?: string
   children?: React.ReactNode
   smaller?: boolean
-  invert?: boolean
 }) {
   return (
     <Container {...props}>
@@ -26,12 +24,7 @@ export function SectionIntro({
         <h2>
           {eyebrow && (
             <>
-              <span
-                className={clsx(
-                  'mb-6 block font-display text-base font-semibold',
-                  invert ? 'text-white' : 'text-neutral-950 dark:text-white',
-                )}
-              >
+              <span className="mb-6 inline-flex rounded-full px-4 py-1.5 font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent shadow-neu-inset-sm">
                 {eyebrow}
               </span>
               <span className="sr-only"> - </span>
@@ -43,22 +36,13 @@ export function SectionIntro({
               smaller
                 ? 'text-2xl font-semibold'
                 : 'text-4xl font-medium sm:text-5xl',
-              invert ? 'text-white' : 'text-neutral-950 dark:text-white',
+              'text-ink',
             )}
           >
             {title}
           </span>
         </h2>
-        {children && (
-          <div
-            className={clsx(
-              'mt-6 text-xl',
-              invert ? 'text-neutral-300' : 'text-neutral-600 dark:text-neutral-400',
-            )}
-          >
-            {children}
-          </div>
-        )}
+        {children && <div className="mt-6 text-xl text-muted">{children}</div>}
       </FadeIn>
     </Container>
   )

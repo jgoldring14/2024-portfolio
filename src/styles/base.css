@@ -8,3 +8,44 @@
   font-stretch: 75% 125%;
   src: url('../fonts/Mona-Sans.var.woff2') format('woff2');
 }
+
+/*
+ * Theme tokens, as space-separated RGB channels so Tailwind opacity modifiers work.
+ * Neumorphism needs the element and the page to share one surface color, lit from
+ * the top left: shade-light is the highlight and shade-dark the cast shadow.
+ * Text, primary and line colors are picked for WCAG AA against the surface.
+ */
+@layer base {
+  :root {
+    --surface: 228 233 240;
+    --shade-light: 255 255 255;
+    --shade-dark: 190 199 213;
+    --ink: 14 26 46;
+    --muted: 71 84 104;
+    --line: 118 129 143;
+    --primary: 0 90 156;
+    --primary-ink: 255 255 255;
+    --primary-text: 0 90 156;
+    --accent: 196 46 58;
+    color-scheme: light;
+  }
+
+  .dark {
+    --surface: 24 26 31;
+    --shade-light: 34 37 44;
+    --shade-dark: 12 13 16;
+    --ink: 236 238 243;
+    --muted: 163 169 181;
+    --line: 100 106 120;
+    --primary: 78 163 239;
+    --primary-ink: 10 20 48;
+    --primary-text: 108 180 245;
+    --accent: 255 122 127;
+    color-scheme: dark;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--primary-text));
+    outline-offset: 3px;
+  }
+}
