@@ -11,7 +11,7 @@ import { MemberCount } from '@/components/MemberCount'
 import { ProfileActions } from '@/components/ProfileActions'
 import { SectionIntro } from '@/components/SectionIntro'
 import { Tilt } from '@/components/Tilt'
-import imageJacobGoldring from '../../public/images/jacob-goldring.jpg'
+import imageJacobIllustrated from '../../public/images/jacob-illustrated.webp'
 import imageLaptopDesk from '../../public/images/laptop-desk.jpg'
 import imageVamoHostIcon from '../../public/images/vamo-host-icon.png'
 import imageVamoIcon from '../../public/images/vamo-icon.png'
@@ -96,9 +96,8 @@ const stack = [
 ]
 
 /**
- * A raised diamond, turned 45deg like an infield, with the photo kept upright in an
- * inset well. The face sits right of center in the original photo, so the image is
- * zoomed past what fills the frame and nudged left until the face lands in the middle.
+ * A raised diamond, turned 45deg like an infield, with the illustrated portrait kept
+ * upright in an inset well and zoomed just enough to fill the diamond's corners.
  */
 function Portrait() {
   return (
@@ -107,9 +106,9 @@ function Portrait() {
         <div className="rounded-[2.25rem] p-4 shadow-neu-diamond-inset">
           <div className="h-44 w-44 overflow-hidden rounded-[1.5rem]">
             <Image
-              src={imageJacobGoldring}
+              src={imageJacobIllustrated}
               alt="Jacob Goldring"
-              className="h-full w-full object-cover object-[center_38%] [transform:rotate(-45deg)_scale(1.65)_translate(-19px,5px)]"
+              className="h-full w-full object-cover [transform:rotate(-45deg)_scale(1.45)]"
               sizes="16rem"
               priority
             />
@@ -280,9 +279,7 @@ function StackSection() {
         eyebrow="Stack"
         title="What I reach for."
         className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>Grouped by where it sits.</p>
-      </SectionIntro>
+      />
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {stack.map((group) => (
