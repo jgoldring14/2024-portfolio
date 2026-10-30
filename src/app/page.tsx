@@ -97,7 +97,8 @@ const stack = [
 
 /**
  * A raised diamond, turned 45deg like an infield, with the photo kept upright in an
- * inset well. The image is scaled by the square root of two so it fills the turned frame.
+ * inset well. The face sits right of center in the original photo, so the image is
+ * zoomed past what fills the frame and nudged left until the face lands in the middle.
  */
 function Portrait() {
   return (
@@ -108,7 +109,7 @@ function Portrait() {
             <Image
               src={imageJacobGoldring}
               alt="Jacob Goldring"
-              className="h-full w-full -rotate-45 scale-[1.42] object-cover object-[center_38%]"
+              className="h-full w-full object-cover object-[center_38%] [transform:rotate(-45deg)_scale(1.65)_translate(-19px,5px)]"
               sizes="16rem"
               priority
             />
