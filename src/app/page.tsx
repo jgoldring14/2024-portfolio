@@ -97,7 +97,8 @@ const stack = [
 
 /**
  * A raised diamond, turned 45deg like an infield, with the illustrated portrait kept
- * upright in an inset well and zoomed just enough to fill the diamond's corners.
+ * upright in an inset well and zoomed just enough to fill the diamond's corners. The
+ * image has extra background above and beside the figure so the whole head fits.
  */
 function Portrait() {
   return (
